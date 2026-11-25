@@ -9,6 +9,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@vercel/blob": "latest",
     "@monaco-editor/react": "^4.7.0",
     "drizzle-orm": "0.45.2",
     "next": "16.4.2",
