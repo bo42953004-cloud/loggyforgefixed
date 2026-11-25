@@ -1,6 +1,17 @@
 # What changed in this update
 
 ## Files changed (replace these in your repo)
+- src/app/account/referrals/page.tsx (subscription gate)
+- src/app/api/member/referrals/route.ts (subscription gate)
+- src/app/api/member/withdrawals/route.ts (subscription gate)
+- src/components/admin/SitePanel.tsx (tagline and footer branding controls)
+- src/components/admin/ConversationsPanel.tsx (automatic inbox refresh)
+- src/components/member/MemberConversations.tsx (automatic thread refresh)
+- src/components/theme/SiteAbout.tsx (editable tagline display)
+- src/components/theme/SiteFooterText.tsx (editable footer text)
+- src/lib/site.ts (extended branding settings)
+- src/app/globals.css (lower-cost animation tuning)
+- package.json, package-lock.json (Vercel Blob dependency)
 - src/db/index.ts                       (new tables for one-on-one messages)
 - src/lib/member/auth.ts                (device cookie: Lax, 5 years)
 - src/app/layout.tsx                    (browser title, description and icon from settings)

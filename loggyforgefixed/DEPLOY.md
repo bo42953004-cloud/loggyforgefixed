@@ -141,7 +141,7 @@ Environment variables are only read when a deployment starts, so **always redepl
 
 Limits: 2 GB per download file, 2 MB per logo image. Deleting a download in the admin removes the listing but not the stored file.
 
-**Branding.** Admin → **Site & branding** sets the browser tab title, the search description, the About text on the landing page, and the logo. The logo also becomes the browser tab icon. Changes appear on the next page load.
+**Branding.** Admin → **Site & branding** sets the browser tab title, search description, About text, tagline, footer text and logo. The logo also becomes the browser tab icon. Changes appear on the next page load. The tagline appears in the About section; footer text is saved as a setting for use by the site footer in a future layout pass.
 
 **Paid-only sections.** Members without an active subscription see only the Updates tab (admin news). Downloads, videos, referrals and messaging are blocked on the server as well as hidden in the dashboard.
 
@@ -149,4 +149,4 @@ Limits: 2 GB per download file, 2 MB per logo image. Deleting a download in the 
 
 **Device binding.** The device cookie is now `SameSite=Lax` and lasts five years, so a browser that stays signed in keeps its device identity when it is opened from a link. Logging out only ends the session in that browser. If a customer is still blocked after switching browsers or clearing cookies, reset the device in Admin → Users.
 
-Install the new dependency once before deploying: `npm install @vercel/blob` (then commit `package.json` and `package-lock.json`).
+**Dependency.** This update uses `@vercel/blob` for direct browser-to-Blob uploads. Run `npm install` in the project before pushing so npm resolves and writes the matching lockfile. If deploying through Vercel, use the default npm install command (not `npm ci`) for the first deployment after this dependency is added.
