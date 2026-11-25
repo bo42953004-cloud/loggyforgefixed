@@ -1,0 +1,4 @@
+import { getPool, ensureSchema } from "@/db";
+import { getCurrentMember } from "@/lib/member/auth";
+import { isSameOrigin } from "@/lib/admin/auth";
+export async function PATCH(request:Request){if(!isSameOrigin(request))return Response.json({error:"Invalid origin."},{status:403});const m=await getCurrentMember();if(!m)return Response.json({error:"Sign in required."},{status:401});let b:Record<string,unknown>;try{b=await request.json()}catch{return Response.json({error:"Invalid request."},{status:400})};const raw=typeof b.phone==="string"?b.phone.replace(/\D/g,""):"";const phone=/^0[17]\d{8}$/.test(raw)?`254${raw.slice(1)}`:/^254[17]\d{8}$/.test(raw)?raw:"";if(!phone)return Response.json({error:"Enter a valid Kenyan M-Pesa number."},{status:400});await ensureSchema();await getPool().query('UPDATE members SET phone=$1,updated_at=now() WHERE id=$2',[phone,m.id]);return Response.json({ok:true,phone});}
