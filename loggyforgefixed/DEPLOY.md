@@ -131,3 +131,22 @@ The code is an integration-ready implementation. Actual live payment acceptance 
 | "This account is linked to another device" | Customers are locked to one browser | Owner: Admin → Users → reset device binding. |
 
 Environment variables are only read when a deployment starts, so **always redeploy after adding or changing one**.
+
+## 10. Uploads, branding, messaging and paid-only sections (update)
+
+**Uploads (Vercel Blob).** Admin → Downloads → *Choose file* uploads a file from your device straight to Vercel Blob and publishes it to paid members. Logos are uploaded the same way. Setup:
+
+1. In Vercel, open your project → **Storage** → **Create** → **Blob**, and connect it to this project. Vercel adds `BLOB_READ_WRITE_TOKEN` to the environment automatically.
+2. Redeploy once after connecting it.
+
+Limits: 2 GB per download file, 2 MB per logo image. Deleting a download in the admin removes the listing but not the stored file.
+
+**Branding.** Admin → **Site & branding** sets the browser tab title, the search description, the About text on the landing page, and the logo. The logo also becomes the browser tab icon. Changes appear on the next page load.
+
+**Paid-only sections.** Members without an active subscription see only the Updates tab (admin news). Downloads, videos, referrals and messaging are blocked on the server as well as hidden in the dashboard.
+
+**One-on-one messaging.** Members write in Contact admin. In Admin → **Messages**, each member's conversation is listed separately; open one and reply. The reply appears in that member's dashboard only. Email delivery of replies is not connected.
+
+**Device binding.** The device cookie is now `SameSite=Lax` and lasts five years, so a browser that stays signed in keeps its device identity when it is opened from a link. Logging out only ends the session in that browser. If a customer is still blocked after switching browsers or clearing cookies, reset the device in Admin → Users.
+
+Install the new dependency once before deploying: `npm install @vercel/blob` (then commit `package.json` and `package-lock.json`).

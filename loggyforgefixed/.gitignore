@@ -1,0 +1,24 @@
+# dependencies
+node_modules/
+vscode-extension/node_modules/
+
+# builds
+.next/
+out/
+vscode-extension/out/
+*.vsix
+*.tsbuildinfo
+next-env.d.ts
+
+# environment (set DATABASE_URL in your hosting provider instead)
+.env
+.env.*
+!.env.example
+
+# misc
+.DS_Store
+npm-debug.log*
+drizzle/
+
+# admin-uploaded files are served through an authenticated route, never from public/
+private/
